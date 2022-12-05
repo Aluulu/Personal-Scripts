@@ -158,22 +158,22 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 # Download and install these flatpaks
 # Flatseal allows for a GUI application to manage permissions for Flatpaks
-flatpak install flathub com.github.tchx84.Flatseal
+flatpak install flathub com.github.tchx84.Flatseal -y
 
 # Spotify is a music client created by Spotify company
-flatpak install flathub com.spotify.Client
+flatpak install flathub com.spotify.Client -y
 
 # Steam is a digital storefront for downloading and playing games
-flatpak install flathub com.valvesoftware.Steam
+flatpak install flathub com.valvesoftware.Steam -y
 
 # Black Box is a GTK4 native terminal emulator for GNOME
-flatpak install flathub com.raggesilver.BlackBox
+flatpak install flathub com.raggesilver.BlackBox -y
 
 # LibreOffice is an office suite for processing documents, presentations, and spreadsheets
-flatpak install flathub org.libreoffice.LibreOffice
+flatpak install flathub org.libreoffice.LibreOffice -y
 
 # Bottles is a WINE program that allows for pre-built environments, combination of ready-to-use settings, libraries and dependencies 
-flatpak install flathub com.usebottles.bottles
+flatpak install flathub com.usebottles.bottles -y
 
 # Updates any Flatpaks that were installed or installed with OS install
 flatpak update
