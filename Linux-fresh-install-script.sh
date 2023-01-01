@@ -139,6 +139,18 @@ if [[ $PackageManager != "rpm-ostree" ]]; then
     timeshift --create --comments "Backup created on Startup script"
     # Command was taken from here: https://dev.to/rahedmir/how-to-use-timeshift-from-command-line-in-linux-1l9b
 
+
+# if the package manager is pacman, install the printer services
+if [[ $PackageManager == "pacman" ]]; then
+    echo "Installing printer services (CUPS)"
+    $PackageManager install cups
+    systemctl enable org.cups.cupsd.service
+    systemctl start org.cups.cupsd.service
+
+    echo "Installing system-config-printer"
+    pacman -S system-config-printer
+
+
 # if rpm-ostree is the package manager, then do not install FastFetch
 else
     echo "Not installing FastFetch"
