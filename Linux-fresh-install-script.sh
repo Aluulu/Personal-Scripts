@@ -143,11 +143,13 @@ if [[ $PackageManager != "rpm-ostree" ]]; then
 # if the package manager is pacman, install the printer services
 if [[ $PackageManager == "pacman" ]]; then
 
-    # NOTE: To install the Nvidia DRM Kernal argument, restart the system and
-    # press "e" on the GRUB menu (The menu that asks if you wanna boot in Arch or the UEFI menu),
-    # and add "nvidia-drm.modeset=1" to the end of the line that starts with "linux".
-    # Press Enter to apply and restart the system. This will allow you to use Wayland with Nvidia graphics cards
-    # You can check to see if this works by typing "cat /proc/cmdline" in the terminal. If the argument is there, then it worked.
+    # NOTE: To install the Nvidia DRM Kernal argument, you want to add the following argument to the kernal parameters.
+    # "nvidia_drm.modeset=1"
+    # This is done by editing the file /etc/default/grub and adding the argument to the GRUB_CMDLINE_LINUX_DEFAULT variable
+    # or by editing /boot/loader/entries/arch.conf and adding the argument at the end of the options variable
+
+    # Use this link to figure out where to put it for your specific bootloader:
+    # https://wiki.archlinux.org/title/Kernel_parameters#Configuration
 
     echo "Installing printer services (CUPS)"
     $PackageManager install cups
