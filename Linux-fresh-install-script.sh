@@ -151,6 +151,13 @@ if [[ $PackageManager == "pacman" ]]; then
     # Use this link to figure out where to put it for your specific bootloader:
     # https://wiki.archlinux.org/title/Kernel_parameters#Configuration
 
+
+    # NOTE: To ensure the that the VPN works correctly, add the Google DNS to the /etc/resolv.conf file
+    # This is done by adding the following lines to the file:
+    # "nameserver 8.8.8.8"
+    # Afterwards, restart the service with sudo systemctl restart systemd-resolved.service
+    # https://phoenixnap.com/kb/temporary-failure-in-name-resolution
+
     echo "Installing printer services (CUPS)"
     $PackageManager install cups
     systemctl enable org.cups.cupsd.service
