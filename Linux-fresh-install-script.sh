@@ -125,7 +125,7 @@ echo 'alias cls="clear"' >> .bashrc
 
 # FastFetch is a alternative to neofetch that improves the speed and information displayed
 # If the package manager isn't rpm-ostree, then install FastFetch
-if [[ $PackageManager != "rpm-ostree" ]]; then
+rpm-ostree_install() {
     echo "Installing FastFetch"
     $PackageManager install FastFetch
 
@@ -141,8 +141,7 @@ if [[ $PackageManager != "rpm-ostree" ]]; then
 
 
 # if the package manager is pacman, install the printer services
-if [[ $PackageManager == "pacman" ]]; then
-
+pacman_install() {
     # NOTE: To install the Nvidia DRM Kernal argument, you want to add the following argument to the kernal parameters.
     # "nvidia_drm.modeset=1"
     # This is done by editing the file /etc/default/grub and adding the argument to the GRUB_CMDLINE_LINUX_DEFAULT variable
@@ -165,13 +164,10 @@ if [[ $PackageManager == "pacman" ]]; then
 
     echo "Installing system-config-printer"
     pacman -S system-config-printer
+}
 
-
-# if rpm-ostree is the package manager, then do not install FastFetch
-else
-    echo "Not installing FastFetch"
-fi
-
+# Run the functions for the relevant package manager
+${PackageManager}_install
 
 # Check if Flatpak is installed, and if it isn't then install it
 if command -v flatpak >/dev/null; then
