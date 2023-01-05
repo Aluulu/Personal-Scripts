@@ -177,7 +177,16 @@ if command -v flatpak >/dev/null; then
     echo "Flatpak is installed"
 else
     echo "Flatpak isn't installed"
-    $PackageManager install flatpak
+    echo "Installing Flatpak"
+    
+    # If the package manager is pacman, then install Flatpak using pacman
+    if $PackageManager == "pacman"; then
+        sudo pacman -S flatpak
+
+    # If the package manager isn't pacman, then use a generic install command
+    else
+        $PackageManager install flatpak -y
+    fi
 fi
 
 # Enable Flathub repo
@@ -192,9 +201,6 @@ flatpak install flathub com.spotify.Client -y
 
 # Steam is a digital storefront for downloading and playing games
 flatpak install flathub com.valvesoftware.Steam -y
-
-# Black Box is a GTK4 native terminal emulator for GNOME
-flatpak install flathub com.raggesilver.BlackBox -y
 
 # LibreOffice is an office suite for processing documents, presentations, and spreadsheets
 flatpak install flathub org.libreoffice.LibreOffice -y
