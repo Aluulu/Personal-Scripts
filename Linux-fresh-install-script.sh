@@ -139,6 +139,9 @@ rpm-ostree_install() {
     timeshift --create --comments "Backup created on Startup script"
     # Command was taken from here: https://dev.to/rahedmir/how-to-use-timeshift-from-command-line-in-linux-1l9b
 
+    # Black Box is a GTK4 native terminal emulator for GNOME
+    flatpak install flathub com.raggesilver.BlackBox -y
+}
 
 # if the package manager is pacman, install the printer services
 pacman_install() {
